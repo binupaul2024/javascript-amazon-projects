@@ -56,6 +56,4 @@ function getProducts() {
   document.querySelector(".js-products-grid").innerHTML = productHTML;
 }
 
-function calcularRating(rating) {}
-
 getProducts();
