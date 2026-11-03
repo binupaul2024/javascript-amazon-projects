@@ -1,5 +1,6 @@
 import { cart } from "../data/cart.js";
 import { products } from "../data/products.js";
+import { currencyFormat } from "./utils/currency.js";
 
 let cartItemHTML = "";
 
@@ -19,6 +20,7 @@ function updateCartItem() {
 }
 
 function CartItemsHTML(productList, cartItem) {
+  console.log(productList.id);
   let cartItemHTML = `
      <div class="cart-item-container">
             <div class="delivery-date">Delivery date: Tuesday, June 21</div>
@@ -33,7 +35,7 @@ function CartItemsHTML(productList, cartItem) {
                 <div class="product-name">
                   ${productList.name}
                 </div>
-                <div class="product-price">$${(productList.priceCents / 100).toFixed(2)}</div>
+                <div class="product-price">$${currencyFormat(productList.priceCents)}</div>
                 <div class="product-quantity">
                   <span> Quantity: <span class="quantity-label">${cartItem.quantity}</span> </span>
                   <span class="update-quantity-link link-primary">
@@ -54,7 +56,7 @@ function CartItemsHTML(productList, cartItem) {
                     type="radio"
                     checked
                     class="delivery-option-input"
-                    name="delivery-option-1"
+                    name="delivery-option-${productList.id}"
                   />
                   <div>
                     <div class="delivery-option-date">Tuesday, June 21</div>
@@ -65,7 +67,7 @@ function CartItemsHTML(productList, cartItem) {
                   <input
                     type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-1"
+                    name="delivery-option-${productList.id}"
                   />
                   <div>
                     <div class="delivery-option-date">Wednesday, June 15</div>
@@ -76,7 +78,7 @@ function CartItemsHTML(productList, cartItem) {
                   <input
                     type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-1"
+                    name="delivery-option-${productList.id}"
                   />
                   <div>
                     <div class="delivery-option-date">Monday, June 13</div>

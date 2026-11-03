@@ -1,5 +1,6 @@
 import { cart, addToCart } from "../data/cart.js";
 import { products } from "../data/products.js";
+import { currencyFormat } from "./utils/currency.js";
 
 function getProducts() {
   let productHTML = "";
@@ -25,7 +26,7 @@ function getProducts() {
             <div class="product-rating-count link-primary">${product.rating.count}</div>
           </div>
 
-          <div class="product-price">$${(product.priceCents / 100).toFixed(2)}</div>
+          <div class="product-price">$${currencyFormat(product.priceCents)}</div>
 
           <div class="product-quantity-container">
             <select id="quantity-select-${product.id}" class="product-quantity">
