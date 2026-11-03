@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js";
+import { cart, addToCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 function getProducts() {
@@ -62,31 +62,12 @@ function getProducts() {
       const quantity =
         productContainer.querySelector(".product-quantity").value;
       addToCart(button.dataset.productId, quantity);
+      updateCartQuantity();
     });
   });
 }
 
-function addToCart(productId, quantity) {
-  let matchingItem;
-
-  cart.forEach((item) => {
-    if (item.productId === productId) {
-      matchingItem = item;
-      //console.log("Cart Item Product ID:", item.productId);
-    }
-  });
-
-  //console.log(matchingItem);
-
-  if (matchingItem) {
-    matchingItem.quantity += parseInt(quantity, 10);
-  } else {
-    cart.push({
-      productId: productId,
-      quantity: parseInt(quantity, 10),
-    });
-  }
-
+function updateCartQuantity() {
   let cartQuatity = 0;
   cart.forEach((item) => {
     cartQuatity += item.quantity;
